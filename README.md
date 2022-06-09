@@ -3,7 +3,7 @@ An analysis of stock data with Excel VBA
 
 ## Overview
 ### Purpose and Background
-In this project, we worked with stock data provided by our client, Steve, in order to quickly compare their returns over a two year span. The aim of this analysis is to create a more efficient VBA script in Excel that has the potential to accommodate a vast amount of data from many more stocks.
+In this project, we worked with stock data provided by our client, Steve, in order to quickly compare the returns over a two year span. The aim of this analysis is to create a more efficient VBA script in Excel that has the potential to accommodate a vast amount of data from many more stocks.
  
 In order to acheive this goal, we will edit, or refactor, the code that we initially came up with  during the module. The goal is to create a script that, upon user input, can loop throught the entirety of the data and print the correct values into an analysis sheet. Though only testing with a dozen stocks, this created script should have the potential to accommodate any number of stocks as well as a different year values (provided the user has access to the data) and run faster - more efficiently - than the previous script.
 
