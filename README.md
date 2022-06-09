@@ -10,7 +10,7 @@ In order to acheive this goal, we will edit, or refactor, the code that we initi
 ## Results
 In the images below, we see that the stock returns for 2017 were much better compared to 2018. In the latter year, all but two of the stocks had negative returns, meaning investor most likely lost money that year. However in 2017, only one stock came out with negative returns, and a third of the others had over 100% in returns. 
 
-The image also depict the runtime for the script both before and after being refactored. We can see that before refactoring the code, the runtime was nearly 1 second, Only decreasing to the values shown below after multiple runs in quick succession. However, after refactoring, the run time came to be at about a third of the original for both years when tested. This indicates that the changes made to the code were successfull in acheiving one of our goals.
+The images also depict the runtime for the script both before and after being refactored. We can see that before refactoring the code, the runtime was nearly 1 second, Only decreasing to the values shown below after multiple runs in quick succession. However, after refactoring, the run time came to be at about a third of the original for both years when tested. This indicates that the changes made to the code were successfull in acheiving one of our goals.
 
 | Runtime for 2017 data - _before_ refactoring | Runtime for 2018 data - _before_ refactoring |
 | ------------- | ------------- |
