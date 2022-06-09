@@ -19,6 +19,71 @@ The images also depict the runtime for the script both before and after being re
 | **Runtime for 2017 data - _after_ refactoring** | **Runtime for 2018 data - _after_ refactoring** |
 | ![](https://github.com/chichi-ugo/stock-analysis/blob/main/Resources/VBA_Challenge_2017_refactored.PNG?raw=true) | ![](https://github.com/chichi-ugo/stock-analysis/blob/main/Resources/VBA_Challenge_2018_refactored.PNG?raw=true) |
 
+We can see that having the program assign our output variables into an array helps to speed up the overall process of the code. This is most likely because the program is now able to run through all the data and then print out the outputs at the end, rather than runing through the data and each time printing out a data point before moving to the next. A similiar analogy is: when at the grocery store, you put all your items in a basket and then bring it up to the register at the end instead of grabbing one item and then taking it up and going back for the next item and so on.
+
+```
+    '1a) Create a ticker Index
+    tickerIndex = 0
+
+    '1b) Create three output arrays
+    Dim tickerVolumes(11) As Long
+    Dim tickerStartingPrices(11) As Single
+    Dim tickerEndingPrices(11) As Single
+```   
+Above shows how we define the arrays. These lines are put before we ask the program to run through the data to collect the information. 
+
+```
+  '4) Loop through your arrays to output the Ticker, Total Daily Volume, and Return.
+    For i = 0 To 11
+        
+        Worksheets("All Stocks Analysis").Activate
+        
+        Cells(4 + i, 1).Value = tickers(i)
+        Cells(4 + i, 2).Value = tickerVolumes(i)
+        Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
+```
+After the program runs throught the data in the sheets and has stored its outputs, we simply ask the program to print its outcomes with a separate `for` loop - as shown above.
+
+When we look at our original - unrefactored code - we see that the outputs are just assigned to a variable. This means the program will have to print that variable before reassigning it for the next run in our loop.
+
+```
+'Loop through the tickers
+    For i = 0 To 11
+        ticker = tickers(i)
+        totVol = 0
+
+        'Loop through rows in the data
+        'Worksheets("2018").Activate - commented this line out when testing yearValue
+        Worksheets(yearValue).Activate
+        
+        For j = 2 To RowCount
+
+            'Find the total volume for the current ticker
+            If Cells(j, 1).Value = ticker Then
+                totVol = totVol + Cells(j, 8).Value
+            End If
+
+            'Find the starting price for the current ticker
+            If Cells(j - 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
+                startPrice = Cells(j, 6).Value
+            End If
+
+            'Find the ending price for the current ticker
+            If Cells(j + 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
+                endPrice = Cells(j, 6).Value
+            End If
+
+        Next j
+
+    'Output the data for the current ticker
+    Worksheets("All Stocks Analysis").Activate
+    Cells(4 + i, 1).Value = ticker
+    Cells(4 + i, 2).Value = totVol
+    Cells(4 + i, 3).Value = endPrice / startPrice - 1
+
+    Next i
+```
+
 ## Summary
 1. What are the advantages or disadvantages of refactoring code?
     - Advantages: Refractoring the code not only helps to make the program run faster in some instances, it also helps to pare down the code and make it more straightforward and easier to interpret. This is important because in the instance that the code is further adapted, it will be easier to debug and more adaptable to changes. Similarly, it helps other users to understand the processes taking place in your code and can help them understand their analysis better. 
